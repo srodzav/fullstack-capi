@@ -21,7 +21,7 @@ export class ContactListComponent {
 
   ngOnInit(): void {
     this.api.getContacts().subscribe(data => {
-      this.contacts = data.slice(0, 10);
+      this.contacts = data;
     })
   }
 

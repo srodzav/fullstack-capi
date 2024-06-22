@@ -6,26 +6,50 @@
             <input type="text" id="name" class="form-control" [(ngModel)]="contact.name" name="name" required>
         </div>
         <div class="form-group mb-3">
-            <label>Telefonos</label>
-            <div *ngFor="let phone of contact.phones; let i = index">
-                <input type="text" class="form-control mb-1" [(ngModel)]="contact.phones[i].phone" name="phone-{{i}}">
+            <div class="mr-5">
+                <label>Telefonos</label>
+            </div>
+            <div *ngFor="let phone of contact.phones; let i = index" class="mb-2 row">
+                <div class="col-10">
+                    <input type="text" class="form-control" [(ngModel)]="contact.phones[i].phone" name="phone-{{i}}">
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-danger" (click)="removePhone(i)">X</button>
+                </div>
             </div>
             <button (click)="contact.phones.push({ phone: '' })" type="button" class="btn btn-primary mt-3"> Añadir Teléfono </button>
         </div>
         <div class="form-group mb-3">
-            <label>Emails</label>
-            <div *ngFor="let email of contact.emails; let i = index">
-                <input type="email" class="form-control mb-1" [(ngModel)]="contact.emails[i].email" name="email-{{i}}">
+            <div class="mr-5">
+                <label>Emails</label>
+            </div>
+            <div *ngFor="let email of contact.emails; let i = index" class="mb-2 row">
+                <div class="col-10">
+                    <input type="email" class="form-control" [(ngModel)]="contact.emails[i].email" name="email-{{i}}">
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-danger" (click)="removeEmail(i)">X</button>
+                </div>
             </div>
             <button (click)="contact.emails.push({ email: '' })" type="button" class="btn btn-primary mt-3"> Añadir Email </button>
         </div>
         <div class="form-group mb-3">
-            <label>Direcciones</label>
-            <div *ngFor="let address of contact.addresses; let i = index">
-                <input type="text" class="form-control mb-1" [(ngModel)]="contact.addresses[i].address" name="address-{{i}}">
+            <div class="mr-5">
+                <label>Direcciones</label>
+            </div>
+            <div *ngFor="let address of contact.addresses; let i = index" class="mb-2 row">
+                <div class="col-10">
+                    <input type="text" class="form-control" [(ngModel)]="contact.addresses[i].address" name="address-{{i}}">
+                </div>
+                <div class="col-2">
+                    <button type="button" class="btn btn-danger" (click)="removeAddress(i)">X</button>
+                </div>
             </div>
             <button (click)="contact.addresses.push({ address: '' })" type="button" class="btn btn-primary mt-3"> Añadir Dirección </button>
         </div>
-        <button type="submit" class="btn btn-success">{{ id ? 'Actualizar' : 'Crear' }}</button>
+        <div class="row">
+            <button (click)="regresar()" class="btn btn-secondary col-2">Regresar</button>
+            <button type="submit" class="btn btn-success col-2">{{ id ? 'Actualizar' : 'Crear' }}</button>
+        </div>
     </form>
 </div>

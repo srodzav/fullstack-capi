@@ -3,7 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Contact } from '../../models/contact.model';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact-form',
@@ -32,6 +32,9 @@ export class ContactFormComponent implements OnInit {
   }
 
   saveContact(): void {
+    if (!this.isValidContact()) {
+      return;
+    }
     if (this.id) {
       this.api.updateContact(this.id, this.contact).subscribe(() => {
         this.router.navigate(['/contacts']);
@@ -42,4 +45,37 @@ export class ContactFormComponent implements OnInit {
       });
     }
   }
+
+  isValidContact(): boolean {
+    for (let phone of this.contact.phones) {
+      if (!/^\d{8}$/.test(phone.phone)) {
+        alert('Teléfono debe ser de 8 dígitos.');
+        return false;
+      }
+    }
+    for (let email of this.contact.emails) {
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.email)) {
+        alert('Email debe tener un formato válido.');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  regresar(){
+    this.router.navigate(['/contacts']);
+  }
+
+  removePhone(index: number): void {
+    this.contact.phones.splice(index, 1);
+  }
+
+  removeEmail(index: number): void {
+    this.contact.emails.splice(index, 1);
+  }
+
+  removeAddress(index: number): void {
+    this.contact.addresses.splice(index, 1);
+  }
+
 }

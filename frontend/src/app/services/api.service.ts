@@ -7,7 +7,7 @@ import { Contact } from '../models/contact.model';
   providedIn: 'root'
 })
 
-// funciones principales para CRUD de
+// funciones principales para CRUD
 export class ApiService {
 
   private apiUrl = 'http://127.0.0.1:8000/api/contacts';
