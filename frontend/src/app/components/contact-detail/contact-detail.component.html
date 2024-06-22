@@ -1,0 +1,22 @@
+<div *ngIf="contact" class="container">
+    <h2>{{ contact.name }}</h2>
+    <div *ngIf="contact.phones && contact.phones.length > 0">
+        <strong>Telefonos:</strong>
+        <ul>
+            <li *ngFor="let phone of contact.phones">{{ phone.phone }}</li>
+        </ul>
+    </div>
+    <div *ngIf="contact.emails && contact.emails.length > 0">
+        <strong>Emails:</strong>
+        <ul>
+            <li *ngFor="let email of contact.emails">{{ email.email }}</li>
+        </ul>
+    </div>
+    <div *ngIf="contact.addresses && contact.addresses.length > 0">
+        <strong>Direcciones:</strong>
+        <ul>
+            <li *ngFor="let address of contact.addresses">{{ address.address }}</li>
+        </ul>
+    </div>
+    <button (click)="regresar()" class="btn btn-secondary">Regresar</button>
+</div>

@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>{{ id ? 'Editar' : 'Agregar' }} Contacto</h2>
+    <form (ngSubmit)="saveContact()">
+        <div class="form-group mb-3">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" class="form-control" [(ngModel)]="contact.name" name="name" required>
+        </div>
+        <div class="form-group mb-3">
+            <label>Telefonos</label>
+            <div *ngFor="let phone of contact.phones; let i = index">
+                <input type="text" class="form-control mb-1" [(ngModel)]="contact.phones[i].phone" name="phone-{{i}}">
+            </div>
+            <button (click)="contact.phones.push({ phone: '' })" type="button" class="btn btn-primary mt-3"> Añadir Teléfono </button>
+        </div>
+        <div class="form-group mb-3">
+            <label>Emails</label>
+            <div *ngFor="let email of contact.emails; let i = index">
+                <input type="email" class="form-control mb-1" [(ngModel)]="contact.emails[i].email" name="email-{{i}}">
+            </div>
+            <button (click)="contact.emails.push({ email: '' })" type="button" class="btn btn-primary mt-3"> Añadir Email </button>
+        </div>
+        <div class="form-group mb-3">
+            <label>Direcciones</label>
+            <div *ngFor="let address of contact.addresses; let i = index">
+                <input type="text" class="form-control mb-1" [(ngModel)]="contact.addresses[i].address" name="address-{{i}}">
+            </div>
+            <button (click)="contact.addresses.push({ address: '' })" type="button" class="btn btn-primary mt-3"> Añadir Dirección </button>
+        </div>
+        <button type="submit" class="btn btn-success">{{ id ? 'Actualizar' : 'Crear' }}</button>
+    </form>
+</div>
